@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import com.springcourse.domain.enums.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
+	private Role role;
 	private List<Request> requests = new ArrayList<Request>();
 	private List<RequestStage> stages = new ArrayList<RequestStage>();
-
 }

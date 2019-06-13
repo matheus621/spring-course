@@ -45,7 +45,6 @@ public class RequestStage implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date realizationDate;
 
-	
 	@Column(length = 12, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private RequestState state;

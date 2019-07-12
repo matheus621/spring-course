@@ -1,11 +1,10 @@
 package com.springcourse.domain;
 
+
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,12 +23,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
 @Entity(name = "user")
 public class User implements Serializable{
-	
+
 	/**
 	 * 
 	 */

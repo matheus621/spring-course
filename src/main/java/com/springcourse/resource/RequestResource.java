@@ -34,8 +34,7 @@ public class RequestResource {
 	public ResponseEntity<Request> update (@PathVariable(name = "id") Long id,@RequestBody Request request){
 		request.setId(id);
 		Request updatedRequest = requestService.update(request);
-		return ResponseEntity.ok(updatedRequest);
-		
+		return ResponseEntity.ok(updatedRequest);		
 	}
 	
 	@GetMapping("/{id}")

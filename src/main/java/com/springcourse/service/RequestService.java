@@ -19,41 +19,49 @@ import com.springcourse.repository.RequestRespository;
 
 @Service
 public class RequestService {
-	@Autowired private RequestRespository requestRespository;
+	@Autowired private RequestRespository requestRepository;
 	
 	public Request save(Request request) {
 		request.setState(RequestState.OPEN);
 		request.setCreationDate(new Date());
 		
-		Request createdRequest = requestRespository.save(request);
+		Request createdRequest = requestRepository.save(request);
 		
 		return createdRequest;
 	}
 	
 	public Request update(Request request) {
-		Request updateRequest = requestRespository.save(request);
+		Request updateRequest = requestRepository.save(request);
 		return updateRequest;
 	}
 	
 	public Request getById(Long id) {
-		Optional<Request> result = requestRespository.findById(id);
+		Optional<Request> result = requestRepository.findById(id);
 		
 		return result.orElseThrow(()-> new NotFoundException("There are not request with id = " + id));
 	}
 	
 	public List<Request> listAll(){
-		List<Request> requests = requestRespository.findAll();
+		List<Request> requests = requestRepository.findAll();
 		return requests;
 	}
 	
+	public PageModel<Request> listAllOnLazyMode(PageRequestModel pr) {
+		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
+		Page<Request> page = requestRepository.findAll(pageable);
+		
+		PageModel<Request> pm = new PageModel<>((int)page.getTotalElements(), page.getSize(), page.getTotalPages(), page.getContent());
+		return pm;
+	}
+	
 	public List<Request> listAllByOwnerId(Long ownerId){
-		List<Request> requests = requestRespository.findAllByOwnerId(ownerId);
+		List<Request> requests = requestRepository.findAllByOwnerId(ownerId);
 		return requests;
 	}
 	
 	public PageModel<Request> listAllByOwnerIdOnLazyModel(Long ownerId, PageRequestModel pr){
 		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
-		Page<Request> page = requestRespository.findAllByOwnerId(ownerId, pageable);
+		Page<Request> page = requestRepository.findAllByOwnerId(ownerId, pageable);
 		
 		PageModel<Request> pm = new PageModel<>((int)page.getTotalElements(), page.getSize(), page.getTotalPages(), page.getContent());
 		return pm;
